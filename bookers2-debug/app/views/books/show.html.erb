@@ -25,11 +25,6 @@
             </tr>
         </table>
 
-        <%= form_for [@book, @comment] do |f| %>
-            <%= f.text_area :body, size: "120x10" %>
-            <%= f.submit "送信" %>
-        <% end %>
-
         <table class="table">
             <thead>
                 <tr>
@@ -38,15 +33,15 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
-                <tr class="new_comment"></tr>
-                <% @comments.each do |comment| %>
-                    <tr class="comments_<%= comment.id %>">
-                        <%= render 'comments', comment: comment %>
-                    </tr>
-                <% end %>
+            <tbody class="new_comment">
+                    <%= render 'comments', comments: @comments %>
             </tbody>
         </table>
+
+        <%= form_with(model: [@book, @comment], remote: true) do |f| %>
+            <%= f.text_area :body, size: "120x10" %>
+            <%= f.submit "送信" %>
+        <% end %>
 	</div>
 </div>
 

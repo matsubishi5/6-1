@@ -3,7 +3,7 @@ class BooksController < ApplicationController
 
   def show
       @comment = Comment.new
-      @comments = @book.comments.order(created_at: :desc)
+      @comments = @book.comments
   end
 
   def index
